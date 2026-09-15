@@ -13,141 +13,69 @@
 
 <body>
 
-    <div class="container-fluid">
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
 
-        <div class="row">
+        <div class="row border rounded-5 p-3 bg-white shadow box-area">
 
-            <div class="col-md-5 left">
-
-                <div class="logo">
-                    <span class="logo-icon"><a href="index.html">⌂</a></span>
-                    samai-login
+            <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box"
+                style="background: #025c15">
+                <div class="image mb-3 feature-image">
+                    <img src="img/hotel.png" class="img-fluid" style="width: 250px" />
                 </div>
-
-                <div class="content">
-
-                    <h1>
-                        เริ่มต้นการเดินทาง<br>
-                        ที่น่าจดจำกับเรา
-                    </h1>
-
-                    <p>
-                        สมัครสมาชิกเพื่อรับสิทธิพิเศษ คะแนนสะสม
-                        และส่วนลดเฉพาะสมาชิก พร้อมประสบการณ์
-                        การเข้าพักระดับ 5 ดาว
-                    </p>
-
-                    <div class="feature">
-
-                        <div>
-                            <div class="feature-title">
-                                คะแนนสะสมทุกการจอง
-                            </div>
-
-                            <div class="feature-text">
-                                แลกรับส่วนลดและรางวัลพิเศษ
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="feature">
-                        <div>
-                            <div class="feature-title">
-                                จัดการการจองได้ตลอด 24/7
-                            </div>
-
-                            <div class="feature-text">
-                                ดู แก้ไข และยกเลิกได้ทุกที่ทุกเวลา
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="feature"> 
-                        <div>
-                            <div class="feature-title">
-                                ดีลพิเศษเฉพาะสมาชิก
-                            </div>
-
-                            <div class="feature-text">
-                                ราคาพิเศษสำหรับสมาชิก
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="mt-4">
-                        12,500+ สมาชิกไว้วางใจเรา
-                    </div>
-
-                </div>
-
+                <p class="text-white fs-2" style="font-family: 'Courier New', Courier, monospace;">สาดไปสมาชิก</p>
+                <small class="text-white text-wrap text-center" style="width:17rem; font-family: 'Courier New', Courier, monospace;">
+                    สมัครสมาชิกเพื่อรับสิทธิพิเศษ</small>
             </div>
 
 
-            <div class="col-md-7 right">
-
-                <div class="form-box">
-
-                    <h2>
-                        สมัครสมาชิก
-                    </h2>
-
-                    <div class="login mb-4">
-                        มีบัญชีแล้ว?
-                        <a href="#">
-                            เข้าสู่ระบบ
-                        </a>
+            <div class="col-md-6 right-box">
+                <div class="row align-items-center">
+                    <div class="header-text mb-4">
+                        <center>
+                            <h2 class="">สมัครสมาชิก </h2>
+                            <p>สมัครสมาชิกเพื่อรับสิทธิพิเศษ</p>
+                        </center>
                     </div>
-                    <form action="login.php" method="POST">
-
-                        <div class="mb-3">
-
-                            <label>
-                                ชื่อ
-                            </label>
-
-                            <input type="text" name="cus_name" class="form-control" placeholder="สมชาย" required>
-
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control form-control-lg bg-light fs-6"
+                            placeholder="ชื่อผู้ใช้งาน" name="username" id="username">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control form-control-lg bg-light fs-6" placeholder="รหัสผ่าน"
+                            name="password" id="password">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control form-control-lg bg-light fs-6"
+                            placeholder="หมายเลขโทรศัพท์" name="phone" id="username">
+                    </div>
+                    <div class="input-group mb-1">
+                        <input type="password" class="form-control form-control-lg bg-light fs-6" placeholder="เลขบัตรประชาชน"
+                            name="id" id="password">
+                    </div>
+                    <div class="input-group mb-5  d-flex justify-content-between">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" name="" id="formCheck" />
+                            <label for="formCheck" class="form-check-label text-secondary"><small>Remember
+                                    Me</small></label>
                         </div>
-
-
-                        <div class="mb-3">
-
-                            <label>
-                                เบอร์โทรศัพท์
-                            </label>
-
-                            <input type="text" name="phone" class="form-control" placeholder="0812345678" maxlength="10"
-                                required>
-
-                        </div>
-
-
-                        <div class="mb-3">
-
-                            <label>
-                                เลขบัตรประชาชน
-                            </label>
-
-                            <input type="text" name="id_card" class="form-control" placeholder="1234567890123"
-                                maxlength="13" required>
-
-                        </div>
-
-
-                        <button type="submit" class="btn-register">
-                            สมัครสมาชิก
+                    </div>
+                    <div class="forgot">
+                        <small><a href="/forgot">ลืมรหัสผ่าน?</a></small>
+                    </div>
+                    <div class="input-group mb-3">
+                        <button class="btn btn-lg btn-success w-100 fs-6"  >Login</button>
+                    </div>
+                    <div class="input-group mb-3">
+                        <button class="btn btn-lg btn-light border w-100 fs-6">
+                            <img src="img/google.webp" style="width:20px;" class="me-2" /><small>Sign In with
+                                Google</small>
                         </button>
-
-                    </form>
-
-
-                    <div class="security">
-                        ข้อมูลของคุณได้รับการปกป้อง
                     </div>
-
+                    <div class="row">
+                        <div class="col text-secondary d-flex align-items-end">
+                            <small>มีบัญชีแล้ว? <a href="index.html">Login</a></small>
+                        </div>
+                    </div>
                 </div>
 
             </div>
