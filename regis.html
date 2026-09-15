@@ -1,11 +1,161 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>regis</title>
+
+    <title>GrandStay - สมัครสมาชิก</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-md-5 left">
+
+                <div class="logo">
+                    <span class="logo-icon"><a href="index.html">⌂</a></span>
+                    samai-login
+                </div>
+
+                <div class="content">
+
+                    <h1>
+                        เริ่มต้นการเดินทาง<br>
+                        ที่น่าจดจำกับเรา
+                    </h1>
+
+                    <p>
+                        สมัครสมาชิกเพื่อรับสิทธิพิเศษ คะแนนสะสม
+                        และส่วนลดเฉพาะสมาชิก พร้อมประสบการณ์
+                        การเข้าพักระดับ 5 ดาว
+                    </p>
+
+                    <div class="feature">
+
+                        <div>
+                            <div class="feature-title">
+                                คะแนนสะสมทุกการจอง
+                            </div>
+
+                            <div class="feature-text">
+                                แลกรับส่วนลดและรางวัลพิเศษ
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="feature">
+                        <div>
+                            <div class="feature-title">
+                                จัดการการจองได้ตลอด 24/7
+                            </div>
+
+                            <div class="feature-text">
+                                ดู แก้ไข และยกเลิกได้ทุกที่ทุกเวลา
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="feature"> 
+                        <div>
+                            <div class="feature-title">
+                                ดีลพิเศษเฉพาะสมาชิก
+                            </div>
+
+                            <div class="feature-text">
+                                ราคาพิเศษสำหรับสมาชิก
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-4">
+                        12,500+ สมาชิกไว้วางใจเรา
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-7 right">
+
+                <div class="form-box">
+
+                    <h2>
+                        สมัครสมาชิก
+                    </h2>
+
+                    <div class="login mb-4">
+                        มีบัญชีแล้ว?
+                        <a href="#">
+                            เข้าสู่ระบบ
+                        </a>
+                    </div>
+                    <form action="login.php" method="POST">
+
+                        <div class="mb-3">
+
+                            <label>
+                                ชื่อ
+                            </label>
+
+                            <input type="text" name="cus_name" class="form-control" placeholder="สมชาย" required>
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label>
+                                เบอร์โทรศัพท์
+                            </label>
+
+                            <input type="text" name="phone" class="form-control" placeholder="0812345678" maxlength="10"
+                                required>
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label>
+                                เลขบัตรประชาชน
+                            </label>
+
+                            <input type="text" name="id_card" class="form-control" placeholder="1234567890123"
+                                maxlength="13" required>
+
+                        </div>
+
+
+                        <button type="submit" class="btn-register">
+                            สมัครสมาชิก
+                        </button>
+
+                    </form>
+
+
+                    <div class="security">
+                        ข้อมูลของคุณได้รับการปกป้อง
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </body>
+
 </html>
