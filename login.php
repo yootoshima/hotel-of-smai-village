@@ -1,6 +1,6 @@
 <?php 
 
-include "/connent.php";
+include "/db.php";
 
 $user = $_REQUEST['username'];
 $pass = $_REQUEST['password'];
