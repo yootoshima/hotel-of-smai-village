@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 14, 2026 at 08:53 AM
+-- Host: localhost:3307
+-- Generation Time: Sep 16, 2026 at 10:20 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -47,7 +47,9 @@ CREATE TABLE `customers` (
   `cus_id` int(11) NOT NULL,
   `cus_name` varchar(100) DEFAULT NULL,
   `phone` int(10) DEFAULT NULL,
-  `id_card` int(13) NOT NULL
+  `id_card` int(13) NOT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `role` enum('admin','member') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

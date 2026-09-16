@@ -40,7 +40,7 @@
                     </div>
                     <div class="input-group mb-5  d-flex justify-content-between">
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="" id="formCheck" />
+                            <input type="checkbox" class="form-check-input" name="remember" id="formCheck" />
                             <label for="formCheck" class="form-check-label text-secondary"><small>จดจำฉัน</small></label>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="row">
                         <div class="col text-secondary d-flex align-items-end">
-                            <small>ไม่มีบัญชี? <a href="regis.html">ลงทะเบียน</a></small>
+                            <small>ไม่มีบัญชี? <a href="regis.php">ลงทะเบียน</a></small>
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
 
     if(result.success){
         alert('เข้าสู่ระบบสำเร็จ');
-        window.location.href = "main.html";
+        window.location.href = "/member/index.php";
     }else{
         alert('Username หรือ Password ไม่ถูกต้อง');
     }

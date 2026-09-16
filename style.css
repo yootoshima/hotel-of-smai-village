@@ -217,3 +217,45 @@ input {
   }
 }
 
+.hero {
+    background-color: #153f34 !important;
+
+    background-image:
+        radial-gradient(
+            circle at 90% 50%,
+            rgba(180, 210, 120, 0.4),
+            transparent 40%
+        );
+}
+
+.btn-book {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    background-color: #c5d65a;
+    color: #173d32;
+
+    padding: 12px 22px;
+    border-radius: 50px;
+
+    text-decoration: none;
+    font-weight: 600;
+
+    transition: all 0.3s ease;
+}
+
+.btn-book span {
+    transition: transform 0.3s ease;
+}
+
+.btn-book:hover {
+    background-color: #d4e477;
+    color: #173d32;
+    transform: translateY(-2px);
+}
+
+.btn-book:hover span {
+    transform: translateX(5px);
+}
+
