@@ -1,0 +1,127 @@
+.profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 6px 12px 6px 6px;
+
+    border: 1px solid #d9ded2;
+    border-radius: 50px;
+
+    background-color: white;
+
+    text-decoration: none;
+    color: #333;
+
+    transition: 0.2s ease;
+}
+
+/* ไอคอน */
+.profile-icon {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #dce8b5;
+    color: #53651c;
+
+    border-radius: 5px;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* ชื่อ */
+.profile-name {
+    font-size: 14px;
+}
+
+/* Hover */
+.profile-btn:hover {
+    background-color: #f5f7ed;
+    border-color: #b8c58e;
+
+    color: #53651c;
+
+    transform: translateY(-1px);
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    text-decoration: none;
+    color: #263d35;
+
+    transition: all 0.2s ease;
+}
+
+/* Hover ทั้ง Logo */
+.brand-logo:hover {
+    transform: translateY(-2px);
+    opacity: 0.85;
+}
+
+/* วงกลม */
+.logo-circle {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background-color: #173d32;
+    color: white;
+
+    transition: all 0.2s ease;
+}
+
+/* Hover วงกลม */
+.brand-logo:hover .logo-circle {
+    background-color: #285c4d;
+    transform: scale(1.05);
+}
+
+/* ชื่อ */
+.brand-name {
+    font-family: Georgia, serif;
+    font-size: 21px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+
+    transition: color 0.2s ease;
+}
+
+/* Hover ชื่อ */
+.brand-logo:hover .brand-name {
+    color: #285c4d;
+}
+
+/* STAY WELL */
+.brand-tagline {
+    margin-top: 5px;
+
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+    color: #718078;
+}
+
+.navbar .nav-link {
+    color: #333;
+    transition: color 0.2s ease;
+}
+
+.navbar .nav-link:hover {
+    color: #025c15;
+}
