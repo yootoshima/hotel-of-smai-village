@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3307
--- Generation Time: Sep 16, 2026 at 10:20 AM
+-- Generation Time: Sep 16, 2026 at 12:59 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -47,10 +47,23 @@ CREATE TABLE `customers` (
   `cus_id` int(11) NOT NULL,
   `cus_name` varchar(100) DEFAULT NULL,
   `phone` int(10) DEFAULT NULL,
-  `id_card` int(13) NOT NULL,
+  `id_card` varchar(13) NOT NULL,
   `password` varchar(255) DEFAULT NULL,
   `role` enum('admin','member') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`cus_id`, `cus_name`, `phone`, `id_card`, `password`, `role`) VALUES
+(1, 'Test1', 123456789, '2147483647', '$2y$10$1dzTnyywRr83/MTiXdSP/uG4D4sfW1QuGlvOxmbjhaGcytlfueYA.', 'member'),
+(4, 'tester1', 1234567890, '2147483647', '$2y$10$HSfpdU5POrnlRUw3cl9NP.BmGr4cMXXnVwBXTL1m35OlPC2GFTUze', 'member'),
+(5, 'tester2', 123456789, '1234567890123', '$2y$10$TX/OPWrhrrvZ2O1aiVr6OeKX237ECkD90.5AtGg9q0qyeywPjngty', 'member'),
+(6, 'tester3', 1234567890, '1234567890123', '$2y$10$Ru8pUrefADw7BKT1okNF/.rjwCbwXtti2gb4H6jFagXhZoFz8pvQ.', 'member'),
+(7, 'tester4', 1234567890, '1234567890123', '$2y$10$JkHBFx92l7lxQH234o3L..v1B7pLKkBo9SzazgEDewQPr6wUlM1C6', 'member'),
+(8, 'tester4', 1234567890, '1234567890123', '$2y$10$TDGBtuAQyrG4C20CdzQ8bOFuiF8V3osJaosFeVFUx9kjbSu9k6KNu', 'member'),
+(9, 'tester4', 1234567890, '1234567890123', '$2y$10$2YWJd8jhreRjTzVLFOYee.DKzeIVuD/E1UZil5ddVFWrI3R2X/QVe', 'member');
 
 -- --------------------------------------------------------
 
@@ -104,7 +117,7 @@ ALTER TABLE `bookings`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `cus_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `rooms`
