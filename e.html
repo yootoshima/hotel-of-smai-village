@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>จัดการห้องพัก | บ้านสไมล์ ซิตี้</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #102a43;
+        --blue: #1677ff;
+        --bg: #f4f7fb;
+      }
+      body {
+        background: var(--bg);
+        font-family:
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          sans-serif;
+        color: #243b53;
+      }
+      .navbar {
+        background: linear-gradient(120deg, #102a43, #1c4f86);
+      }
+      .page-title {
+        font-weight: 800;
+        color: var(--navy);
+      }
+      .stat-card,
+      .panel {
+        border: 0;
+        border-radius: 18px;
+        box-shadow: 0 8px 25px rgba(24, 57, 91, 0.07);
+      }
+      .stat-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        font-size: 1.25rem;
+      }
+      .table > tbody > tr {
+        vertical-align: middle;
+      }
+      .table > tbody > tr:hover {
+        background: #f7fbff;
+      }
+      .badge {
+        font-weight: 600;
+        padding: 0.55em 0.8em;
+      }
+      .btn {
+        border-radius: 10px;
+      }
+      .form-control,
+      .form-select {
+        border-radius: 10px;
+        padding: 0.65rem 0.8rem;
+      }
+      .empty-note {
+        font-size: 0.85rem;
+        color: #829ab1;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark shadow-sm">
+      <div class="container py-2">
+        <a class="navbar-brand fw-bold" href="#"
+          ><i class="bi bi-buildings-fill me-2"></i>บ้านสไมล์ ซิตี้</a
+        ><span class="text-white-50 small">ระบบจัดการโรงแรม</span>
+      </div>
+    </nav>
+    <main class="container py-4 py-md-5">
+      <div
+        class="d-flex flex-column flex-md-row gap-3 align-items-md-center justify-content-between mb-4"
+      >
+        <div>
+          <h1 class="page-title h2 mb-1">จัดการห้องพัก</h1>
+          <p class="text-secondary mb-0">
+            เพิ่ม แก้ไข ค้นหา และตรวจสอบสถานะห้องพัก
+          </p>
+        </div>
+        <button
+          class="btn btn-primary px-3 py-2 shadow-sm"
+          data-bs-toggle="modal"
+          data-bs-target="#roomModal"
+          onclick="openAdd()"
+        >
+          <i class="bi bi-plus-lg me-1"></i> เพิ่มห้องพัก
+        </button>
+      </div>
+      <div class="row g-3 mb-4" id="stats"></div>
+      <section class="panel bg-white p-3 p-md-4">
+        <div class="row g-2 mb-4">
+          <div class="col-md-6">
+            <div class="input-group">
+              <span class="input-group-text bg-white"
+                ><i class="bi bi-search"></i></span
+              ><input
+                id="search"
+                class="form-control border-start-0"
+                placeholder="ค้นหาหมายเลขห้อง หรือประเภทห้อง"
+              />
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <select class="form-select" id="statusFilter">
+              <option value="">ทุกสถานะ</option>
+              <option>ว่าง</option>
+              <option>ไม่ว่าง</option>
+              <option>ซ่อมบำรุง</option>
+              <option>ปิดใช้งาน</option>
+            </select>
+          </div>
+          <div class="col-6 col-md-3">
+            <select class="form-select" id="floorFilter">
+              <option value="">ทุกชั้น</option>
+              <option value="1">ชั้น 1</option>
+              <option value="2">ชั้น 2</option>
+              <option value="3">ชั้น 3</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th>ห้อง</th>
+                <th>ประเภท</th>
+                <th>ชั้น</th>
+                <th>ราคา/คืน</th>
+                <th>สถานะ</th>
+                <th>ผู้เข้าพัก</th>
+                <th class="text-end">จัดการ</th>
+              </tr>
+            </thead>
+            <tbody id="roomRows"></tbody>
+          </table>
+        </div>
+        <p class="empty-note mt-3 mb-0">
+          <i class="bi bi-info-circle me-1"></i>สถานะ “ไม่ว่าง”
+          ควรเชื่อมกับข้อมูลการจองของวันที่เลือกในระบบจริง
+        </p>
+      </section>
+    </main>
+    <div class="modal fade" id="roomModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 rounded-4">
+          <form id="roomForm">
+            <div class="modal-header border-0 pb-0">
+              <h5 class="modal-title fw-bold" id="modalTitle">เพิ่มห้องพัก</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+              ></button>
+            </div>
+            <div class="modal-body pt-3">
+              <input type="hidden" id="editId" />
+              <div class="row g-3">
+                <div class="col-6">
+                  <label class="form-label">หมายเลขห้อง</label
+                  ><input
+                    required
+                    id="number"
+                    class="form-control"
+                    placeholder="เช่น 101"
+                  />
+                </div>
+                <div class="col-6">
+                  <label class="form-label">ชั้น</label
+                  ><select required id="floor" class="form-select">
+                    <option value="">เลือกชั้น</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                  </select>
+                </div>
+                <div class="col-6">
+                  <label class="form-label">ประเภทห้อง</label
+                  ><select required id="type" class="form-select">
+                    <option>Standard</option>
+                    <option>Deluxe</option>
+                    <option>Family</option>
+                    <option>Suite</option>
+                  </select>
+                </div>
+                <div class="col-6">
+                  <label class="form-label">ราคาต่อคืน (บาท)</label
+                  ><input
+                    required
+                    min="0"
+                    type="number"
+                    id="price"
+                    class="form-control"
+                    placeholder="650"
+                  />
+                </div>
+                <div class="col-12">
+                  <label class="form-label">สถานะห้อง</label
+                  ><select required id="status" class="form-select">
+                    <option>ว่าง</option>
+                    <option>ไม่ว่าง</option>
+                    <option>ซ่อมบำรุง</option>
+                    <option>ปิดใช้งาน</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label"
+                    >ผู้เข้าพัก
+                    <span class="text-secondary small">(ไม่บังคับ)</span></label
+                  ><input
+                    id="guest"
+                    class="form-control"
+                    placeholder="เช่น นายสมชาย ใจดี"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer border-0">
+              <button
+                type="button"
+                class="btn btn-light"
+                data-bs-dismiss="modal"
+              >
+                ยกเลิก</button
+              ><button class="btn btn-primary px-3">บันทึกข้อมูล</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      let rooms = [
+        {
+          id: 1,
+          number: "101",
+          type: "Standard",
+          floor: "1",
+          price: 650,
+          status: "ว่าง",
+          guest: "",
+        },
+        {
+          id: 2,
+          number: "102",
+          type: "Deluxe",
+          floor: "1",
+          price: 950,
+          status: "ไม่ว่าง",
+          guest: "นายสมชาย ใจดี",
+        },
+        {
+          id: 3,
+          number: "201",
+          type: "Standard",
+          floor: "2",
+          price: 650,
+          status: "ว่าง",
+          guest: "",
+        },
+        {
+          id: 4,
+          number: "202",
+          type: "Family",
+          floor: "2",
+          price: 1200,
+          status: "ซ่อมบำรุง",
+          guest: "",
+        },
+        {
+          id: 5,
+          number: "301",
+          type: "Suite",
+          floor: "3",
+          price: 1800,
+          status: "ปิดใช้งาน",
+          guest: "",
+        },
+      ];
+      const labels = {
+        ว่าง: "success",
+        ไม่ว่าง: "danger",
+        ซ่อมบำรุง: "warning",
+        ปิดใช้งาน: "secondary",
+      };
+      const money = (n) => new Intl.NumberFormat("th-TH").format(n);
+      function render() {
+        const q = search.value.toLowerCase(),
+          st = statusFilter.value,
+          fl = floorFilter.value;
+        const list = rooms.filter(
+          (r) =>
+            (r.number + r.type).toLowerCase().includes(q) &&
+            (!st || r.status === st) &&
+            (!fl || r.floor === fl),
+        );
+        roomRows.innerHTML =
+          list
+            .map(
+              (r) =>
+                `<tr><td class="fw-bold">${r.number}</td><td>${r.type}</td><td>${r.floor}</td><td>฿${money(r.price)}</td><td><span class="badge text-bg-${labels[r.status]}">${r.status}</span></td><td>${r.guest || '<span class="text-secondary">-</span>'}</td><td class="text-end"><button class="btn btn-sm btn-outline-primary" onclick="editRoom(${r.id})"><i class="bi bi-pencil-square"></i> <span class="d-none d-lg-inline">แก้ไข</span></button> <button class="btn btn-sm btn-outline-danger" onclick="deleteRoom(${r.id})" title="ลบห้อง"><i class="bi bi-trash"></i></button></td></tr>`,
+            )
+            .join("") ||
+          '<tr><td colspan="7" class="text-center py-4 text-secondary">ไม่พบข้อมูลห้องพัก</td></tr>';
+        const c = (s) => rooms.filter((r) => r.status === s).length;
+        stats.innerHTML = [
+          ["ห้องทั้งหมด", rooms.length, "bi-door-open", "#e8f1ff", "#1677ff"],
+          ["ห้องว่าง", c("ว่าง"), "bi-check-circle", "#e7f8ef", "#1b9b5e"],
+          ["ไม่ว่าง", c("ไม่ว่าง"), "bi-person-fill", "#ffeaea", "#d94343"],
+          ["ซ่อมบำรุง", c("ซ่อมบำรุง"), "bi-tools", "#fff4dc", "#e69a18"],
+        ]
+          .map(
+            (x) =>
+              `<div class="col-6 col-lg-3"><div class="stat-card bg-white p-3 d-flex gap-3 align-items-center"><div class="stat-icon" style="background:${x[3]};color:${x[4]}"><i class="bi ${x[2]}"></i></div><div><div class="text-secondary small">${x[0]}</div><div class="fs-4 fw-bold">${x[1]}</div></div></div></div>`,
+          )
+          .join("");
+      }
+      function openAdd() {
+        roomForm.reset();
+        editId.value = "";
+        modalTitle.textContent = "เพิ่มห้องพัก";
+      }
+      function editRoom(id) {
+        const r = rooms.find((x) => x.id === id);
+        editId.value = id;
+        number.value = r.number;
+        type.value = r.type;
+        floor.value = r.floor;
+        price.value = r.price;
+        status.value = r.status;
+        guest.value = r.guest;
+        modalTitle.textContent = "แก้ไขห้อง " + r.number;
+        bootstrap.Modal.getOrCreateInstance("#roomModal").show();
+      }
+      function deleteRoom(id) {
+        const r = rooms.find((x) => x.id === id);
+        if (r.status === "ไม่ว่าง") {
+          alert(
+            "ไม่สามารถลบห้องที่มีผู้เข้าพักได้ กรุณาเช็กเอาต์หรือเปลี่ยนเป็น “ปิดใช้งาน” ก่อน",
+          );
+          return;
+        }
+        if (confirm(`ต้องการลบห้อง ${r.number} ใช่หรือไม่?`)) {
+          rooms = rooms.filter((x) => x.id !== id);
+          render();
+        }
+      }
+      roomForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const data = {
+          id: +editId.value || Date.now(),
+          number: number.value.trim(),
+          type: type.value,
+          floor: floor.value,
+          price: +price.value,
+          status: status.value,
+          guest: guest.value.trim(),
+        };
+        if (rooms.some((r) => r.number === data.number && r.id !== data.id)) {
+          alert("หมายเลขห้องนี้มีอยู่แล้ว");
+          return;
+        }
+        const i = rooms.findIndex((r) => r.id === data.id);
+        i < 0 ? rooms.push(data) : (rooms[i] = data);
+        bootstrap.Modal.getInstance("#roomModal").hide();
+        render();
+      });
+      [search, statusFilter, floorFilter].forEach((e) =>
+        e.addEventListener("input", render),
+      );
+      render();
+    </script>
+  </body>
+</html>

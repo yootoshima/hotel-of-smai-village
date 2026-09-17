@@ -1,3 +1,8 @@
+:root {
+        --navy: #065022;
+        --blue: #04793e;
+        --bg: #72917b59;
+      }
 .profile-btn {
     display: flex;
     align-items: center;

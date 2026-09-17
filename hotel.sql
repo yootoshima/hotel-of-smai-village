@@ -47,8 +47,10 @@ CREATE TABLE `customers` (
   `cus_id` int(11) NOT NULL,
   `cus_name` varchar(100) DEFAULT NULL,
   `phone` int(10) DEFAULT NULL,
-  `id_card` varchar(13) NOT NULL,
+  `id_card` varchar(13) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
+  `google_sub` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `role` enum('admin','member') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
