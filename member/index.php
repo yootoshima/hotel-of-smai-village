@@ -67,8 +67,6 @@ include(__DIR__ . '/../db.php');
                     <th>ประเภทห้อง</th>
                     <th class="text-end">ราคา/คืน</th>
                     <th class="text-center">สถานะ</th>
-                    <th class="text-center">แก้ไขข้อมูล</th>
-                    <th class="text-center">ลบข้อมูล</th>
                 </tr>
             </thead>
             <tbody>
@@ -90,13 +88,6 @@ include(__DIR__ . '/../db.php');
                             <?php echo $status; ?>
                         </span>
                     </td>
-                    <td class="text-center">
-                        <a href="edit_room.php?id=<?php echo $room_id; ?>" class="btn btn-primary btn-sm">แก้ไข</a>
-                    </td>
-                    <td class="text-center">
-                        <a href="del_room.php?id=<?php echo $room_id; ?>" 
-                           onclick="return confirm('ท่านต้องการลบข้อมูลห้องพักนี้หรือไม่?')" 
-                           class="btn btn-danger btn-sm">ลบ</a>
                     </td>
                 </tr>
                 <?php 

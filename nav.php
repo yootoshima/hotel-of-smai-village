@@ -25,16 +25,7 @@
             <a class="nav-link active mx-lg-2" aria-current="page" href="#">หน้าหลัก</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link mx-lg-2 " href="#">สำรวจที่พัก</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link mx-lg-2" href="#">การจองของฉัน</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link mx-lg-2" href="#">สำหรับพาร์ทเนอร์</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link mx-lg-2" href="#">เกี่ยวกับเรา</a>
           </li>
           <a href="profile.php" class="profile-btn">
 

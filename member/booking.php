@@ -83,7 +83,7 @@ $result_rooms = mysqli_query($conn, $sql_rooms);
                     
                     <div class="text-center mt-3">
                         <small class="text-muted">เปลี่ยนใจ? 
-                            <a href="main.php" class="text-success fw-bold text-decoration-none border-bottom border-success pb-1">กลับไปหน้าหลัก</a>
+                            <a href="index.php" class="text-success fw-bold text-decoration-none border-bottom border-success pb-1">กลับไปหน้าหลัก</a>
                         </small>
                     </div>
                 </form>

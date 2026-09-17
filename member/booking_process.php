@@ -57,8 +57,7 @@ if ($nights >= 5) {
 $total_price = $base_price - $discount;
 
 
-$sql_insert = "INSERT INTO bookings (cus_id, room_id, check_in, check_out, total_price, status) 
-               VALUES ('$customer_id', '$room_id', '$check_in', '$check_out', '$total_price', 'จองแล้ว')";
+$sql_insert = "INSERT INTO bookings (cus_id, room_id, check_in, check_out, total_price, status)VALUES ('$customer_id', '$room_id', '$check_in', '$check_out', '$total_price', 'จองแล้ว')";
 
 if (mysqli_query($conn, $sql_insert)) {
     
