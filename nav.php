@@ -7,8 +7,8 @@
     </div>
     <!-- ชื่อ + คำข้างใต้ -->
     <div class="brand-text">
-        <div class="brand-name">NIRA</div>
-        <div class="brand-tagline">STAY WELL</div>
+        <div class="brand-name">SMAI</div>
+        <div class="brand-tagline">hotel</div>
     </div>
 </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
