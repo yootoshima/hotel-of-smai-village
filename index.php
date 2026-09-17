@@ -1,3 +1,4 @@
+<?php $googleError = $_GET['google_error'] ?? ''; ?>
 <!doctype html>
 <html lang="en">
 
@@ -30,6 +31,9 @@
                             <p>พวกเรายินดีที่คุณกลับมา</p>
                         </center>
                     </div>
+                    <?php if ($googleError): ?>
+                    <div class="alert alert-danger py-2" role="alert"><?= htmlspecialchars($googleError) ?></div>
+                    <?php endif; ?>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control form-control-lg bg-light fs-6"
                             placeholder="ชื่อผู้ใช้งาน" name="username" id="username">
@@ -45,16 +49,16 @@
                         </div>
                     </div>
                     <div class="forgot">
-                        <small><a href="/forgot">ลืมรหัสผ่าน?</a></small>
+                        <small><a href="forgot.php">ลืมรหัสผ่าน?</a></small>
                     </div>
                     <div class="input-group mb-3">
-                        <button class="btn btn-lg btn-success w-100 fs-6"  >Login</button>
+                        <button type="submit" class="btn btn-lg btn-success w-100 fs-6">Login</button>
                     </div>
                     <div class="input-group mb-3">
-                        <button class="btn btn-lg btn-light border w-100 fs-6">
+                        <a href="google_login.php" class="btn btn-lg btn-light border w-100 fs-6">
                             <img src="img/google.webp" style="width:20px;" class="me-2" /><small>Sign In with
                                 Google</small>
-                        </button>
+                        </a>
                     </div>
                     <div class="row">
                         <div class="col text-secondary d-flex align-items-end">
@@ -70,34 +74,4 @@
     
     <script src="js/bootstrap.bundle.min.js"></script>
 </body>
-<script>
-
-    const form = document.getElementById("login")
-    form.addEventListener("submit" , async function (event) {
-        event.preventDefault()
-    })
-
-    const username =document.getElementById("username").value;
-    const password =document.getElementById("password").value;
-
-    const response = await fetch("login.php", {
-        method : "POST", headers: {
-            "Connent-Type": "application/json"
-        },
-        body: JSON.stringify({
-            username: username,
-            password: password,
-        })
-    })
-
-    const result = await response.json()
-
-    if(result.success){
-        alert('เข้าสู่ระบบสำเร็จ');
-        window.location.href = "/member/index.php";
-    }else{
-        alert('Username หรือ Password ไม่ถูกต้อง');
-    }
-
-</script>
 </html>

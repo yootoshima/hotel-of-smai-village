@@ -2,24 +2,24 @@
 session_start();
 include "db.php";
 
-$user = $_POST['username'];
-$pass = $_POST['password'];
+$user = trim($_POST['username'] ?? '');
+$pass = $_POST['password'] ?? '';
 
-$sql = "SELECT * FROM customers WHERE cus_name = '$user'";
+$sql = $conn->prepare('SELECT * FROM customers WHERE cus_name = ? LIMIT 1');
+$sql->bind_param('s', $user);
+$sql->execute();
+$customer = $sql->get_result()->fetch_assoc();
 
-
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-
-    $customer = $result->fetch_assoc();
+if ($customer) {
 
     if (password_verify($pass, $customer['password'])) {
 
+        // เก็บข้อมูลลง Session
         $_SESSION['username'] = $customer['cus_name'];
         $_SESSION['role'] = $customer['role'];
         $_SESSION['id'] = $customer['id_card'];
 
+        // Remember Me
         if (isset($_POST['remember'])) {
             setcookie(
                 "username",
@@ -29,10 +29,23 @@ if ($result->num_rows > 0) {
             );
         }
 
-        echo "<script>
-                alert('เข้าสู่ระบบสำเร็จ');
-                window.location.href = '/hotel-of-smai-village/member/index.php';
-              </script>";
+        // เช็ก Role
+        if ($customer['role'] === 'admin') {
+
+            // ถ้าเป็น Admin
+            echo "<script>
+                    alert('เข้าสู่ระบบ Admin สำเร็จ');
+                    window.location.href = '/hotel-of-smai-village/admin/index.php';
+                  </script>";
+
+        } else {
+
+            // ถ้าเป็น Member
+            echo "<script>
+                    alert('เข้าสู่ระบบสำเร็จ');
+                    window.location.href = '/hotel-of-smai-village/member/index.php';
+                  </script>";
+        }
 
     } else {
 
@@ -51,8 +64,4 @@ if ($result->num_rows > 0) {
           </script>";
 
 }
-
-
-
-
 ?>
