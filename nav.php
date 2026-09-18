@@ -7,8 +7,8 @@
     </div>
     <!-- ชื่อ + คำข้างใต้ -->
     <div class="brand-text">
-        <div class="brand-name">NIRA</div>
-        <div class="brand-tagline">STAY WELL</div>
+        <div class="brand-name">SMAI</div>
+        <div class="brand-tagline">hotel</div>
     </div>
 </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -25,16 +25,7 @@
             <a class="nav-link active mx-lg-2" aria-current="page" href="#">หน้าหลัก</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link mx-lg-2 " href="#">สำรวจที่พัก</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link mx-lg-2" href="#">การจองของฉัน</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link mx-lg-2" href="#">สำหรับพาร์ทเนอร์</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link mx-lg-2" href="#">เกี่ยวกับเรา</a>
+            <a class="nav-link mx-lg-2" href="booking.php">การจองของฉัน</a>
           </li>
           <a href="profile.php" class="profile-btn">
 

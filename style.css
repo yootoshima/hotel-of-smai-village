@@ -223,44 +223,98 @@ input {
 }
 
 .hero {
-    background-color: #153f34 !important;
+  background-color: #153f34 !important;
 
-    background-image:
-        radial-gradient(
-            circle at 90% 50%,
-            rgba(180, 210, 120, 0.4),
-            transparent 40%
-        );
+  background-image:
+    radial-gradient(circle at 90% 50%,
+      rgba(180, 210, 120, 0.4),
+      transparent 40%);
 }
 
 .btn-book {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 
-    background-color: #c5d65a;
-    color: #173d32;
+  background-color: #c5d65a;
+  color: #173d32;
 
-    padding: 12px 22px;
-    border-radius: 50px;
+  padding: 12px 22px;
+  border-radius: 50px;
 
-    text-decoration: none;
-    font-weight: 600;
+  text-decoration: none;
+  font-weight: 600;
 
-    transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .btn-book span {
-    transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .btn-book:hover {
-    background-color: #d4e477;
-    color: #173d32;
-    transform: translateY(-2px);
+  background-color: #d4e477;
+  color: #173d32;
+  transform: translateY(-2px);
 }
 
 .btn-book:hover span {
-    transform: translateX(5px);
+  transform: translateX(5px);
 }
 
+body {
+  background-color: #f4f6f9;
+  /* สีพื้นหลังอ่อนๆ ให้กล่องลอยขึ้นมา */
+}
+
+.box-area {
+  width: 930px;
+}
+
+.left-box {
+  background: #025c15;
+  /* สีเขียวตามรูป */
+  border-radius: 20px 0 0 20px;
+  /* โค้งเฉพาะฝั่งซ้าย */
+  padding: 40px;
+}
+
+.right-box {
+  padding: 40px 50px;
+}
+
+.form-control,
+.form-select {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 12px 15px;
+  border: 1px solid #ced4da;
+}
+
+.btn-primary {
+  background-color: #198754;
+  /* สีเขียวปุ่ม */
+  border-color: #198754;
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #146c43;
+  border-color: #146c43;
+}
+
+@media only screen and (max-width: 768px) {
+  .box-area {
+    margin: 0 10px;
+  }
+
+  .left-box {
+    border-radius: 20px 20px 0 0;
+  }
+
+  .right-box {
+    padding: 20px;
+  }
+}

@@ -70,7 +70,7 @@
                         </div>
                         <div class="row">
                             <div class="col text-secondary d-flex align-items-end">
-                                <small>มีบัญชีแล้ว? <a href="index.html">Login</a></small>
+                                <small>มีบัญชีแล้ว? <a href="index.php">Login</a></small>
                             </div>
                         </div>
                     </div>

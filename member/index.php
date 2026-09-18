@@ -47,7 +47,57 @@ include(__DIR__ . '/../db.php');
     </div>
    </div> 
 
+    <hr style="margin-top: 140px">
 
-   <script src="../js/bootstrap.bundle.min.js"></script>
+    <?php 
+    // Query ดึงข้อมูลห้องพักทั้งหมดจากตาราง rooms
+    $sql2 = "SELECT * FROM rooms";
+    $result2 = mysqli_query($conn, $sql2);
+    $i = 1; // กำหนดตัวแปรสำหรับแสดงลำดับ
+    ?>
+
+    <div class="container my-4">
+        <h3 class="mb-3">รายการห้องพัก</h3>
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th class="text-center">ลำดับ</th>
+                    <th class="text-center">รหัสห้อง</th>
+                    <th>หมายเลขห้อง</th>
+                    <th>ประเภทห้อง</th>
+                    <th class="text-end">ราคา/คืน</th>
+                    <th class="text-center">สถานะ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while($read2 = mysqli_fetch_assoc($result2)) { 
+                    $room_id = $read2['room_id'];
+                    $room_number = $read2['room_number'];
+                    $room_type = $read2['room_type'];
+                    $price = $read2['price'];
+                    $status = $read2['status'];
+                ?>
+                <tr>
+                    <td class="text-center"><?php echo $i++; ?></td>
+                    <td class="text-center"><?php echo $room_id; ?></td>
+                    <td><?php echo $room_number; ?></td>
+                    <td><?php echo $room_type; ?></td>
+                    <td class="text-end"><?php echo number_format($price); ?> บาท</td>
+                    <td class="text-center">
+                        <span class="badge <?php echo ($status == 'available' || $status == 'ว่าง') ? 'bg-success' : 'bg-secondary'; ?>">
+                            <?php echo $status; ?>
+                        </span>
+                    </td>
+                    </td>
+                </tr>
+                <?php 
+                } 
+                mysqli_close($conn);
+                ?>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
