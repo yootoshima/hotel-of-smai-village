@@ -62,12 +62,12 @@
                         <div class="input-group mb-3">
                             <button class="btn btn-lg btn-success w-100 fs-6"  >สมัครสมาชิก</button>
                         </div>
-                        <div class="input-group mb-3">
+                        <!-- <div class="input-group mb-3">
                             <button class="btn btn-lg btn-light border w-100 fs-6">
                                 <img src="img/google.webp" style="width:20px;" class="me-2" /><small>Sign In with
                                     Google</small>
                             </button>
-                        </div>
+                        </div> -->
                         <div class="row">
                             <div class="col text-secondary d-flex align-items-end">
                                 <small>มีบัญชีแล้ว? <a href="index.php">Login</a></small>

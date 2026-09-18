@@ -66,7 +66,7 @@ $initial = mb_strtoupper(mb_substr($adminName, 0, 1));
                 <ul class="dropdown-menu dropdown-menu-end admin-dropdown">
                     <li><div class="admin-dropdown-header"><div class="admin-avatar large" aria-hidden="true"><?= htmlspecialchars($initial) ?></div><div><strong><?= htmlspecialchars($adminName) ?></strong><small>Administrator</small></div></div></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a href="../logout.php" class="dropdown-item logout"><i class="bi bi-box-arrow-right"></i>ออกจากระบบ</a></li>
+                    <li><a href="../logout.php" class="dropdown-item logout" onclick="return confirm('คุณแน่ใจหรือไม่ที่จะออกจากระบบ?');><i class="bi bi-box-arrow-right"></i>ออกจากระบบ</a></li>
                 </ul>
             </div>
         </div>

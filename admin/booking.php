@@ -6,16 +6,16 @@ function redirectWithMessage(string $type, string $message): void {
     header('Location: booking.php?' . http_build_query([$type => $message]));
     exit;
 }
-
+// Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
-
+// Validate action
     if ($action === 'create') {
         $customerId = filter_input(INPUT_POST, 'cus_id', FILTER_VALIDATE_INT);
         $roomId = filter_input(INPUT_POST, 'room_id', FILTER_VALIDATE_INT);
         $checkIn = $_POST['check_in'] ?? '';
         $checkOut = $_POST['check_out'] ?? '';
-
+// Validate input
         if (!$customerId || !$roomId || !$checkIn || !$checkOut || $checkOut <= $checkIn) {
             redirectWithMessage('error', 'กรุณากรอกข้อมูลการจองให้ครบ และเลือกวันออกหลังวันเข้าพัก');
         }
@@ -24,17 +24,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $room->bind_param('i', $roomId);
         $room->execute();
         $roomData = $room->get_result()->fetch_assoc();
+        // Validate room availability
         if (!$roomData) {
             redirectWithMessage('error', 'ไม่พบห้องพัก หรือห้องพักไม่พร้อมให้จอง');
         }
-
+        // Check for overlapping bookings
         $overlap = $conn->prepare("SELECT book_id FROM bookings WHERE room_id = ? AND status IN ('รอตรวจสอบ', 'จองแล้ว', 'เข้าพัก') AND check_in < ? AND check_out > ?");
         $overlap->bind_param('iss', $roomId, $checkOut, $checkIn);
         $overlap->execute();
         if ($overlap->get_result()->num_rows > 0) {
             redirectWithMessage('error', 'ห้องพักนี้มีรายการจองในช่วงวันที่เลือกแล้ว');
         }
-
+    // Calculate total price
         $nights = (new DateTime($checkIn))->diff(new DateTime($checkOut))->days;
         $totalPrice = (float) $roomData['price'] * $nights;
         $booking = $conn->prepare("INSERT INTO bookings (cus_id, room_id, check_in, check_out, total_price, status) VALUES (?, ?, ?, ?, ?, 'รอตรวจสอบ')");

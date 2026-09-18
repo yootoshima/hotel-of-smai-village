@@ -14,7 +14,7 @@ $result_cus = mysqli_query($conn, $sql_cus);
 $row_cus = mysqli_fetch_assoc($result_cus);
 $customer_id = $row_cus['cus_id'];
 
-
+//p and s
 $sql_room = "SELECT price, status FROM rooms WHERE room_id = '$room_id'";
 $result_room = mysqli_query($conn, $sql_room);
 $room = mysqli_fetch_assoc($result_room);

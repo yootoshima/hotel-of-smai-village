@@ -22,10 +22,13 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 text-wrap " style="width:17rem; font-family: 'Courier New', Courier, monospace;">
           <li class="nav-item">
-            <a class="nav-link active mx-lg-2" aria-current="page" href="#">หน้าหลัก</a>
+            <a class="nav-link active mx-lg-2" aria-current="page" href="index.php">หน้าหลัก</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link mx-lg-2" href="booking.php">การจองของฉัน</a>
+            <a class="nav-link mx-lg-2" href="index.php#booking-section">รายการห้องพัก</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-lg-2" onclick="return confirm('คุณแน่ใจหรือไม่ที่จะออกจากระบบ?');" href="../logout.php">Logout</a>
           </li>
           <a href="profile.php" class="profile-btn">
 

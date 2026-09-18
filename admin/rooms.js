@@ -29,3 +29,21 @@ function openAdd() {
         render();
       }
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const searchInput = document.getElementById('search');
+      const roomRows = document.querySelectorAll('#roomRows tr');
+
+      if (!searchInput) return;
+
+      searchInput.addEventListener('input', function () {
+        const keyword = this.value.trim().toLowerCase();
+
+        roomRows.forEach((row) => {
+          const roomNumber = row.cells[0]?.textContent.trim().toLowerCase() || '';
+          const roomType = row.cells[1]?.textContent.trim().toLowerCase() || '';
+          const matches = !keyword || roomNumber.includes(keyword) || roomType.includes(keyword);
+          row.style.display = matches ? '' : 'none';
+        });
+      });
+    });

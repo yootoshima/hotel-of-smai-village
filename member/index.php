@@ -20,6 +20,14 @@ include(__DIR__ . '/../db.php');
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../nav.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        #booking-section {
+            scroll-margin-top: 120px;
+        }
+    </style>
 </head>
 <body>
    <?php include(__DIR__ . '/../nav.php'); ?>
@@ -38,7 +46,7 @@ include(__DIR__ . '/../db.php');
                        </center> 
                     </div>
                     <center>
-                        <a href="booking.php" class="btn-book btn btn-light align-items-center justify-content-center shadow mb-3 rounded-pill px-4 py-2" ">
+                        <a href="booking.php#booking-section" class="btn-book btn btn-light align-items-center justify-content-center shadow mb-3 rounded-pill px-4 py-2">
                             จองเลย
                         </a>
                     </center>
@@ -50,13 +58,22 @@ include(__DIR__ . '/../db.php');
     <hr style="margin-top: 140px">
 
     <?php 
-    // Query ดึงข้อมูลห้องพักทั้งหมดจากตาราง rooms
-    $sql2 = "SELECT * FROM rooms";
+    // Query ดึงข้อมูลห้องพักทั้งหมดจากตาราง rooms พร้อมยอดชำระสุทธิจากการจองล่าสุดของห้องนั้น
+    $sql2 = "SELECT r.*, b.total_price, b.status AS booking_status,
+                    DATEDIFF(b.check_out, b.check_in) AS nights
+             FROM rooms r
+             LEFT JOIN (
+                 SELECT room_id, MAX(book_id) AS latest_book_id
+                 FROM bookings
+                 GROUP BY room_id
+             ) latest ON latest.room_id = r.room_id
+             LEFT JOIN bookings b ON b.book_id = latest.latest_book_id
+             ORDER BY r.room_number ASC";
     $result2 = mysqli_query($conn, $sql2);
-    $i = 1; // กำหนดตัวแปรสำหรับแสดงลำดับ
+    $i = 1;
     ?>
 
-    <div class="container my-4">
+    <div id="booking-section" class="container my-4">
         <h3 class="mb-3">รายการห้องพัก</h3>
         <table class="table table-striped table-hover align-middle">
             <thead class="table-dark">
@@ -66,6 +83,8 @@ include(__DIR__ . '/../db.php');
                     <th>หมายเลขห้อง</th>
                     <th>ประเภทห้อง</th>
                     <th class="text-end">ราคา/คืน</th>
+                    <th class="text-center">จำนวนคืน</th>
+                    <th class="text-end">ราคาที่ต้องจ่าย</th>
                     <th class="text-center">สถานะ</th>
                 </tr>
             </thead>
@@ -76,6 +95,8 @@ include(__DIR__ . '/../db.php');
                     $room_type = $read2['room_type'];
                     $price = $read2['price'];
                     $status = $read2['status'];
+                    $payable_total = !empty($read2['total_price']) ? (float) $read2['total_price'] : 0;
+                    $nights = !empty($read2['nights']) ? (int) $read2['nights'] : 0;
                 ?>
                 <tr>
                     <td class="text-center"><?php echo $i++; ?></td>
@@ -83,11 +104,12 @@ include(__DIR__ . '/../db.php');
                     <td><?php echo $room_number; ?></td>
                     <td><?php echo $room_type; ?></td>
                     <td class="text-end"><?php echo number_format($price); ?> บาท</td>
+                    <td class="text-center"><?php echo $nights > 0 ? $nights : '-'; ?> คืน</td>
+                    <td class="text-end"><?php echo number_format($payable_total, 2); ?> บาท</td>
                     <td class="text-center">
                         <span class="badge <?php echo ($status == 'available' || $status == 'ว่าง') ? 'bg-success' : 'bg-secondary'; ?>">
                             <?php echo $status; ?>
                         </span>
-                    </td>
                     </td>
                 </tr>
                 <?php 

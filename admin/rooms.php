@@ -55,7 +55,7 @@ $result = mysqli_query($conn, $sql);
                             class="form-control border-start-0" placeholder="ค้นหาหมายเลขห้อง หรือประเภทห้อง" />
                     </div>
                 </div>
-                <div class="col-6 col-md-3">
+                <!-- <div class="col-6 col-md-3">
                     <select class="form-select" id="statusFilter">
                         <option value="">ทุกสถานะ</option>
                         <option>ว่าง</option>
@@ -71,7 +71,7 @@ $result = mysqli_query($conn, $sql);
                         <option value="2">ชั้น 2</option>
                         <option value="3">ชั้น 3</option>
                     </select>
-                </div>
+                </div> -->
             </div>
             <div class="table-responsive">
                 <table class="table align-middle mb-0">
@@ -140,14 +140,14 @@ $result = mysqli_query($conn, $sql);
                                 <label class="form-label">หมายเลขห้อง</label><input name="room_number" required
                                     id="number" class="form-control" placeholder="เช่น 101" />
                             </div>
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <label class="form-label">วันเข้าพัก</label>
                                 <input name="check_in" type="date" class="form-control" />
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">วันออก</label>
                                 <input name="check_out" type="date" class="form-control" />
-                            </div>
+                            </div> -->
 
 
                             <div class="col-md-6">

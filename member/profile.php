@@ -1,16 +1,21 @@
 <?php 
 session_start();
-if (empty($_SESSION['username'])) {
+if (empty($_SESSION['username']) || empty($_SESSION['cus_id'])) {
     header("Location: ../index.php");
     exit();
 }
 include(__DIR__ . '/../db.php');
 
-$username = mysqli_real_escape_string($conn, $_SESSION['username']);
+$customerId = (int) $_SESSION['cus_id'];
 
-$sql = "SELECT * FROM customers WHERE cus_name = '$username'";
+$sql = "SELECT * FROM customers WHERE cus_id = '$customerId' LIMIT 1";
 $result = mysqli_query($conn, $sql);
 $user = mysqli_fetch_assoc($result);
+
+if (!$user) {
+    header("Location: ../index.php");
+    exit();
+}
 
 $cus_name = $user['cus_name'] ?? '';
 $phone = $user['phone'] ?? '';
@@ -49,17 +54,17 @@ $id_card = $user['id_card'] ?? '';
                 <form action="edit_profile_process.php" method="POST">
                     
                     <div class="form-floating mb-3 shadow-sm rounded-3">
-                        <input type="text" class="form-control bg-light border-0" id="cusName" name="cus_name" value="<?php ($cus_name); ?>" required>
+                        <input type="text" class="form-control bg-light border-0" id="cusName" name="cus_name" value="<?= htmlspecialchars($cus_name) ?>" required>
                         <label for="cusName" class="text-secondary">ชื่อผู้ใช้งาน</label>
                     </div>
 
                     <div class="form-floating mb-3 shadow-sm rounded-3">
-                        <input type="text" class="form-control bg-light border-0" id="phone" name="phone" value="<?php ($phone); ?>" maxlength="10" required>
+                        <input type="text" class="form-control bg-light border-0" id="phone" name="phone" value="<?= htmlspecialchars($phone) ?>" maxlength="10" required>
                         <label for="phone" class="text-secondary">หมายเลขโทรศัพท์</label>
                     </div>
 
                     <div class="form-floating mb-3 shadow-sm rounded-3">
-                        <input type="text" class="form-control bg-light border-0" id="idCard" name="id_card" value="<?php ($id_card); ?>" maxlength="13">
+                        <input type="text" class="form-control bg-light border-0" id="idCard" name="id_card" value="<?= htmlspecialchars($id_card) ?>" maxlength="13">
                         <label for="idCard" class="text-secondary">เลขบัตรประจำตัวประชาชน</label>
                     </div>
 

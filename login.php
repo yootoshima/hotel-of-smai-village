@@ -17,6 +17,7 @@ if ($customer) {
         // เก็บข้อมูลลง Session
         $_SESSION['username'] = $customer['cus_name'];
         $_SESSION['role'] = $customer['role'];
+        $_SESSION['cus_id'] = (int) $customer['cus_id'];
         $_SESSION['id'] = $customer['id_card'];
 
         // Remember Me
